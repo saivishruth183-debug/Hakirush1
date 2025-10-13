@@ -78,7 +78,7 @@ const Header = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 p-4"
+            className="md:hidden bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 mb-3 p-4"
           >
             {navigation.map((item) => (
               <Link

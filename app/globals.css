@@ -75,3 +75,25 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+::-webkit-scrollbar {
+  width: 10px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #18181B; /* track color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff0000; /* red color for scrollbar */
+  border-radius: 10px;
+  border: 2px solid #18181B; /* optional - gives a gap effect */
+}
+
+/* Remove the top/bottom scroll arrows */
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Trophy, Medal, Award, Filter } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Trophy, Medal, Award, Filter, ChevronDown } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const leaderboardData = [
@@ -23,10 +23,15 @@ const leaderboardData = [
 
 export default function Leaderboard() {
   const [selectedMonth, setSelectedMonth] = useState('December');
-  
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   const filteredData = leaderboardData
     .filter(team => team.month === selectedMonth)
     .sort((a, b) => a.rank - b.rank);
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(prev => (prev === index ? null : index));
+  };
 
   const getRankIcon = (rank: number) => {
     switch (rank) {
@@ -55,19 +60,20 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="pt-16">
+    <div className="bg-gradient-to-b from-zinc-900 via-black to-zinc-950 text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="py-20 hero-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-28 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ff000020,_transparent_80%)]" />
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 40, rotateX: -10 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-5xl lg:text-6xl font-extrabold mb-6">
               <span className="text-red-500">Leaderboard</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Track team performance, celebrate victories, and maintain the competitive spirit that drives excellence.
             </p>
           </motion.div>
@@ -75,23 +81,23 @@ export default function Leaderboard() {
       </section>
 
       {/* Leaderboard Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 inset-0 bg-[radial-gradient(circle_at_left,_#ff000020,_transparent_90%)] text-white overflow-hidden ">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8absolute inset-0 bg-[radial-gradient(circle_at_top,_#ff000010,_transparent_70%)]">
           {/* Filter Controls */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col sm:flex-row justify-between items-center mb-8 bg-white p-6 rounded-2xl shadow-lg"
+            className="flex flex-col sm:flex-row justify-between items-center mb-8 bg-black p-6 rounded-2xl shadow-lg hover:shadow-red-400"
           >
             <div className="flex items-center mb-4 sm:mb-0">
-              <Filter className="h-5 w-5 text-gray-600 mr-2" />
-              <h2 className="text-xl font-semibold text-gray-900">Tournament Results</h2>
+              <Filter className="h-5 w-5 text-white mr-2" />
+              <h2 className="text-xl font-semibold text-white">Tournament Results</h2>
             </div>
             <div className="flex items-center space-x-4">
-              <label className="text-sm font-medium text-gray-700">Filter by Month:</label>
+              <label className="text-sm font-medium text-white">Filter by Month:</label>
               <Select value={selectedMonth} onValueChange={setSelectedMonth}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px] bg-red-600">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -103,10 +109,10 @@ export default function Leaderboard() {
           </motion.div>
 
           {/* Leaderboard Table */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden shadow-red-400">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-900">
+                <thead className="bg-black">
                   <tr>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-white">Rank</th>
                     <th className="px-6 py-4 text-left text-sm font-semibold text-white">Team Name</th>
@@ -116,50 +122,43 @@ export default function Leaderboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredData.map((team, index) => (
-                    <motion.tr
-                      key={`${team.team}-${team.month}`}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${getRankBg(team.rank)}`}
-                    >
-                      <td className="px-6 py-4">
-                        <div className="flex items-center justify-center w-12">
-                          {getRankIcon(team.rank)}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center">
-                          <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                            <span className="text-red-600 font-bold text-sm">
-                              {team.team.split(' ').map(word => word[0]).join('')}
-                            </span>
+                  {filteredData.map((team, index) => {
+                    const isExpanded = expandedIndex === index;
+                    return (
+                      <>
+                        <motion.tr
+                          key={`${team.team}-${team.month}`}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          className={`border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors ${getRankBg(team.rank)}`}
+                          onClick={() => toggleExpand(index)}
+                        >
+                          <td className="px-6 py-4">
+                            <div className="flex items-center justify-center w-12">
+                              {getRankIcon(team.rank)}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-lg font-semibold text-gray-900">{team.team}</td>
+                          <td className="px-6 py-4 text-center text-green-600 font-bold">{team.wins}</td>
+                          <td className="px-6 py-4 text-center text-gray-700 font-semibold">{team.matches}</td>
+                          <td className="px-6 py-4 text-center">
+                          <div className="flex items-center justify-center">
+                            <div className="w-16 bg-gray-200 rounded-full h-2 mr-3">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${team.winRate}%` }}
+                                transition={{ duration: 1, delay: index * 0.1 }}
+                                className="bg-red-600 h-2 rounded-full"
+                              />
+                            </div>
+                            <span className="text-sm font-semibold text-gray-700">{team.winRate}%</span>
                           </div>
-                          <span className="text-lg font-semibold text-gray-900">{team.team}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <span className="text-2xl font-bold text-green-600">{team.wins}</span>
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <span className="text-lg font-semibold text-gray-700">{team.matches}</span>
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <div className="flex items-center justify-center">
-                          <div className="w-16 bg-gray-200 rounded-full h-2 mr-3">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${team.winRate}%` }}
-                              transition={{ duration: 1, delay: index * 0.1 }}
-                              className="bg-red-600 h-2 rounded-full"
-                            />
-                          </div>
-                          <span className="text-sm font-semibold text-gray-700">{team.winRate}%</span>
-                        </div>
-                      </td>
-                    </motion.tr>
-                  ))}
+                        </td>
+                        </motion.tr>
+                      </>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -172,25 +171,37 @@ export default function Leaderboard() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"
           >
-            <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+            <motion.div
+              className="bg-black border border-red-200 p-6 rounded-2xl shadow-lg text-center hover:shadow-red-400"
+              whileHover={{ scale: 1.1, rotate: 2 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+            >
               <Trophy className="h-10 w-10 text-red-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{filteredData.length}</h3>
-              <p className="text-gray-600">Active Teams</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">{filteredData.length}</h3>
+              <p className="text-white">Active Teams</p>
+            </motion.div>
+            <motion.div
+              className="bg-black border border-red-200 p-6 rounded-2xl shadow-lg text-center hover:shadow-red-400 hover:border-red-400"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+            >
               <Medal className="h-10 w-10 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {filteredData.reduce((total, team) => total + team.matches, 0)}
               </h3>
-              <p className="text-gray-600">Total Matches</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
+              <p className="text-white">Total Matches</p>
+            </motion.div>
+            <motion.div
+              className="bg-black border border-red-200 p-6 rounded-2xl shadow-lg text-center hover:shadow-red-400"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+            >
               <Award className="h-10 w-10 text-green-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {filteredData[0]?.winRate}%
               </h3>
-              <p className="text-gray-600">Top Win Rate</p>
-            </div>
+              <p className="text-white">Top Win Rate</p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
