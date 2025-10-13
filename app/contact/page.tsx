@@ -18,9 +18,9 @@ const contactDetails = {
 };
 
 const socialLinks = [
-  { icon:  <Linkedin className="h-6 w-6 text-white/70 hover:text-red-600" />, url: 'https://linkedin.com/company/hakirush' },
-  { icon: <Instagram className="h-6 w-6 text-white/70 hover:text-red-600" />, url: 'https://instagram.com/hakirush' },
-  { icon: <Twitter className="h-6 w-6 text-white/70 hover:text-red-600" />, url: '#' }
+  { name: 'LinkedIn', icon: <Linkedin className="h-6 w-6 text-white/70 hover:text-red-600" />, url: 'https://linkedin.com/company/hakirush' },
+  { name: 'Instagram', icon: <Instagram className="h-6 w-6 text-white/70 hover:text-red-600" />, url: 'https://instagram.com/hakirush' },
+  { name: 'Twitter', icon: <Twitter className="h-6 w-6 text-white/70 hover:text-red-600" />, url: '#' }
 ];
 
 export default function Contact() {
@@ -31,6 +31,8 @@ export default function Contact() {
     phone: '',
     message: ''
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -50,12 +52,15 @@ export default function Contact() {
   };
 
   const sendMail = async () => {
+    setLoading(true);
     const templateParams = {
       name: formData.name,
       company: formData.company,
       email: formData.email,
+      phone: formData.phone,
       message: formData.message
     };
+
     try {
       await emailjs.send(
         'service_s1lva6i', // Your Service ID
@@ -63,6 +68,7 @@ export default function Contact() {
         templateParams,
         'X--V0CsL6UTjd3XiC' // Your Public Key
       );
+
       Swal.fire({
         icon: 'success',
         title: 'Message Sent 🎉',
@@ -71,8 +77,10 @@ export default function Contact() {
         timer: 2500,
         timerProgressBar: true
       });
+
       resetForm();
     } catch (error) {
+      console.error('Email send error:', error);
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -81,6 +89,8 @@ export default function Contact() {
         timer: 3000,
         timerProgressBar: true
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -127,6 +137,7 @@ export default function Contact() {
               </p>
 
               <div className="space-y-6">
+                {/* Email */}
                 <div className="flex items-center">
                   <div className="p-3 bg-red-100 rounded-lg mr-4">
                     <Mail className="h-6 w-6 text-red-600" />
@@ -142,6 +153,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Phone */}
                 <div className="flex items-center">
                   <div className="p-3 bg-green-100 rounded-lg mr-4">
                     <Phone className="h-6 w-6 text-green-600" />
@@ -157,6 +169,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* WhatsApp */}
                 <div className="flex items-center">
                   <div className="p-3 bg-blue-100 rounded-lg mr-4">
                     <MessageSquare className="h-6 w-6 text-blue-600" />
@@ -175,6 +188,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Address */}
                 <div className="flex items-center">
                   <div className="p-3 bg-purple-100 rounded-lg mr-4">
                     <MapPin className="h-6 w-6 text-purple-600" />
@@ -185,6 +199,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Business Hours */}
                 <div className="flex items-center">
                   <div className="p-3 bg-orange-100 rounded-lg mr-4">
                     <Clock className="h-6 w-6 text-orange-600" />
@@ -200,12 +215,13 @@ export default function Contact() {
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <h3 className="text-xl font-extrabold text-white mb-4">Follow <span className='text-red-600'>Us</span></h3>
                 <div className="flex space-x-4">
-                  {socialLinks.map((link) => (
+                  {socialLinks.map((link, index) => (
                     <motion.a
-                      key={link.icon}
+                      key={index}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={link.name}
                       className="text-gray-600 hover:text-red-600 transition-colors"
                       whileHover={{ scale: 1.3 }}
                       whileTap={{ scale: 0.95 }}
@@ -223,7 +239,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="p-8 rounded-2xl shadow-lg hover:shadow-red-400 cursor-pointer inset-0 bg-[radial-gradient(circle_at_top,_#ff000020,_transparent_90%)] border hover:border-red-400"
+              className="p-8 rounded-2xl shadow-lg hover:shadow-red-400 cursor-pointer inset-0 bg-[radial-gradient(circle_at_top,_#ff000020,_transparent_90%)] border hover:border-red-400 transition-shadow transition-colors"
             >
               <h2 className="text-3xl font-bold text-white mb-8">Send us a <span className='text-red-600'>Message</span></h2>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -305,10 +321,11 @@ export default function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold"
+                  disabled={loading}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold flex justify-center items-center gap-2"
                 >
-                  <Send className="h-5 w-5 mr-2" />
-                  Send Message
+                  <Send className="h-5 w-5" />
+                  {loading ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </motion.div>
