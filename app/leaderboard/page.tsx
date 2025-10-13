@@ -62,7 +62,7 @@ export default function Leaderboard() {
   return (
     <div className="bg-gradient-to-b from-zinc-900 via-black to-zinc-950 text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="py-28 relative">
+      <section className="pt-24 pb-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ff000020,_transparent_80%)]" />
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div

@@ -107,7 +107,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute bottom-8 left-4 right-4 text-red-600 bg-black/40 p-3 rounded-lg backdrop-blur-md">
+              <div className="absolute bottom-8 left-4 right-4 text-white bg-black/40 p-3 rounded-lg backdrop-blur-md">
                 <h3 className="text-lg font-semibold text-center drop-shadow-md">
                   {heroSlides[currentSlide].title}
                 </h3>

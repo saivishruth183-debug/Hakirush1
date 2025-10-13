@@ -56,7 +56,7 @@ export default function Gallery() {
   return (
     <div className="bg-gradient-to-b from-zinc-900 via-black to-zinc-950 text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="py-28 relative">
+      <section className="pt-24 pb-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ff000020,_transparent_80%)]" />
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div
@@ -172,7 +172,7 @@ export default function Gallery() {
                 className="object-contain w-full h-full bg-black"
               />
 
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-red-600 text-center bg-black/30 backdrop-blur-lg px-7 py-2 rounded-lg">
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white text-center bg-black/30 backdrop-blur-lg px-7 py-2 rounded-lg">
                 <h3 className="text-xl font-semibold">{filteredItems[currentImage].title}</h3>
               </div>
 
