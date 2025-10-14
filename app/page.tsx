@@ -39,13 +39,13 @@ export default function Home() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
 
   return (
-    <div className="overflow-hidden bg-gradient-to-b from-zinc-900 via-black to-zinc-950 text-white">
+    <div className="overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-900">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-28 sm:pt-24 md:pt-20 perspective">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-900/20 backdrop-blur-sm" />
+      <section className="relative min-h-screen flex items-center pt-28 sm:pt-24 md:pt-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-red-100/30 via-transparent to-red-200/30" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -80, rotateY: -15 }}
@@ -54,10 +54,10 @@ export default function Home() {
               className="text-left"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                <span className="text-red-500 block drop-shadow-lg">CORPORATE</span>
+                <span className="text-red-600 block drop-shadow-md">CORPORATE</span>
                 SPORTS ENGAGEMENT
               </h1>
-              <p className="text-lg lg:text-xl text-gray-300 mb-8 max-w-xl">
+              <p className="text-lg lg:text-xl text-gray-700 mb-8 max-w-xl">
                 Transforming workplace culture through competitive sports, team building, and employee wellness programs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -69,16 +69,14 @@ export default function Home() {
                     <motion.button
                       whileHover={{
                         scale: 1.08,
-                        rotateX: 10,
-                        rotateY: -10,
-                        boxShadow: '0 10px 20px rgba(255, 0, 0, 0.4)',
+                        boxShadow: '0 10px 20px rgba(255, 0, 0, 0.3)',
                       }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ type: 'spring', stiffness: 200 }}
                       className={`px-8 py-4 rounded-xl text-lg font-semibold ${
                         btn.primary
-                          ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : 'border-2 border-white hover:bg-white hover:text-gray-900'
+                          ? 'bg-red-600 text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600'
+                          : 'border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white'
                       }`}
                     >
                       {btn.label}
@@ -90,8 +88,8 @@ export default function Home() {
 
             {/* Right Slideshow */}
             <motion.div
-              className="relative h-64 sm:h-80 md:h-[500px] rounded-3xl overflow-hidden bg-black/20 backdrop-blur-lg shadow-2xl border border-red-600/20 cursor-pointer"
-              whileHover={{ rotateY: 10, rotateX: -5, scale: 1.05 }}
+              className="relative h-64 sm:h-80 md:h-[500px] rounded-3xl overflow-hidden bg-white shadow-2xl border border-gray-200 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 150 }}
               style={{ perspective: 1000 }}
             >
@@ -107,8 +105,8 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </AnimatePresence>
-              <div className="absolute bottom-8 left-4 right-4 text-white bg-black/40 p-3 rounded-lg backdrop-blur-md">
-                <h3 className="text-lg font-semibold text-center drop-shadow-md">
+              <div className="absolute bottom-8 left-4 right-4 text-red-600 bg-white/70 p-3 rounded-lg shadow-md">
+                <h3 className="text-lg font-semibold text-center">
                   {heroSlides[currentSlide].title}
                 </h3>
               </div>
@@ -118,8 +116,8 @@ export default function Home() {
       </section>
 
       {/* Vision Section */}
-      <section className="py-24 bg-zinc-950 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ff000015,_transparent_90%)] pointer-events-none" />
+      <section className="py-24 bg-gray-50 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#ff000010,_transparent_90%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,10 +126,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-extrabold text-white mb-4">
+            <h2 className="text-5xl font-extrabold text-gray-900 mb-4">
               Why Choose <span className="text-red-600">HAKIRUSH</span>?
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're more than just a sports platform — we're your partner in building stronger, more engaged teams.
             </p>
           </motion.div>
@@ -147,15 +145,15 @@ export default function Home() {
                   whileHover={{ scale: 1.05, rotateY: 10 }}
                   transition={{ type: 'spring', stiffness: 200 }}
                   viewport={{ once: true }}
-                  className="relative bg-zinc-900/60 border border-red-600/20 p-8 rounded-2xl shadow-xl hover:shadow-red-600/30 transition-all"
+                  className="relative bg-white border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-red-400 transition-all"
                 >
                   <div className="flex items-center mb-4">
-                    <div className="p-3 bg-red-600/20 rounded-lg mr-4">
-                      <Icon className="h-6 w-6 text-red-500" />
+                    <div className="p-3 bg-red-100 rounded-lg mr-4">
+                      <Icon className="h-6 w-6 text-red-600" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-white">{point.title}</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900">{point.title}</h3>
                   </div>
-                  <p className="text-gray-300 leading-relaxed">{point.content}</p>
+                  <p className="text-gray-700 leading-relaxed">{point.content}</p>
                 </motion.div>
               );
             })}
@@ -164,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 inset-0 bg-[radial-gradient(circle_at_right,_#ff000020,_transparent_90%)] relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-r from-red-50 to-white relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -172,10 +170,10 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-7xl mx-auto px-6 text-center relative z-10"
         >
-          <h2 className="text-5xl font-extrabold text-white mb-6">
+          <h2 className="text-5xl font-extrabold text-gray-900 mb-6">
             Ready to Transform Your <span className="text-red-600 px-2 rounded-lg">Workplace</span>?
           </h2>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
             Join leading companies who trust HAKIRUSH to boost employee morale and build stronger teams through sports.
           </p>
           <Link href="/contact">
@@ -183,11 +181,11 @@ export default function Home() {
               whileHover={{
                 scale: 1.1,
                 rotateY: 10,
-                boxShadow: '0px 0px 20px 5px rgba(255,255,255,0.4)',
+                boxShadow: '0px 0px 20px 5px rgba(255,0,0,0.3)',
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 200 }}
-              className="bg-white text-red-700 font-bold px-12 py-4 rounded-xl text-xl hover:bg-gray-200 transition"
+              className="bg-red-600 text-white font-bold px-12 py-4 rounded-xl text-xl hover:bg-red-700 transition"
             >
               Start Your Journey
             </motion.button>
