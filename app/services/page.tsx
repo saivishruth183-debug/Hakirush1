@@ -109,7 +109,7 @@ export default function Services() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
-                  className="relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-red-200"
+                  className="relative bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-all hover:shadow-red-200 self-start flex flex-col min-h-[200px]"
                   style={{
                     transformStyle: 'preserve-3d',
                     perspective: 1000,
