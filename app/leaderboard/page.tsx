@@ -128,6 +128,7 @@ export default function Leaderboard() {
                     <td className="px-6 py-4 font-semibold text-gray-800">{team.team}</td>
                     <td className="px-6 py-4 text-center text-green-600 font-bold">{team.wins}</td>
                     <td className="px-6 py-4 text-center text-gray-700">{team.matches}</td>
+                    <td className="px-6 py-4 text-center text-gray-700">{team.mvp}</td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center">
                         <div className="w-20 bg-gray-200 rounded-full h-2 mr-3">
@@ -141,7 +142,6 @@ export default function Leaderboard() {
                         <span className="text-sm font-semibold text-gray-700">{team.winRate}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-center text-gray-700">{team.mvp}</td>
                   </motion.tr>
                 ))}
               </tbody>
