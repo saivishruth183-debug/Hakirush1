@@ -6,18 +6,18 @@ import { Trophy, Medal, Award, Filter } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const leaderboardData = [
-  { rank: 1, team: 'TechCorp Tigers', wins: 8, matches: 10, month: 'December', winRate: 80 },
-  { rank: 2, team: 'Innovation Lions', wins: 7, matches: 10, month: 'December', winRate: 70 },
-  { rank: 3, team: 'Digital Hawks', wins: 6, matches: 10, month: 'December', winRate: 60 },
-  { rank: 4, team: 'Alpha Wolves', wins: 5, matches: 10, month: 'December', winRate: 50 },
-  { rank: 5, team: 'Future Falcons', wins: 4, matches: 10, month: 'December', winRate: 40 },
-  { rank: 6, team: 'Smart Panthers', wins: 3, matches: 10, month: 'December', winRate: 30 },
-  { rank: 1, team: 'Digital Hawks', wins: 9, matches: 10, month: 'November', winRate: 90 },
-  { rank: 2, team: 'TechCorp Tigers', wins: 7, matches: 10, month: 'November', winRate: 70 },
-  { rank: 3, team: 'Alpha Wolves', wins: 6, matches: 10, month: 'November', winRate: 60 },
-  { rank: 4, team: 'Innovation Lions', wins: 5, matches: 10, month: 'November', winRate: 50 },
-  { rank: 5, team: 'Future Falcons', wins: 4, matches: 10, month: 'November', winRate: 40 },
-  { rank: 6, team: 'Smart Panthers', wins: 2, matches: 10, month: 'November', winRate: 20 },
+  { rank: 1, team: 'TechCorp Tigers', wins: 8, matches: 10, month: 'December', winRate: 80, mvp: 7 },
+  { rank: 2, team: 'Innovation Lions', wins: 7, matches: 10, month: 'December', winRate: 70, mvp: 5 },
+  { rank: 3, team: 'Digital Hawks', wins: 6, matches: 10, month: 'December', winRate: 60, mvp: 4 },
+  { rank: 4, team: 'Alpha Wolves', wins: 5, matches: 10, month: 'December', winRate: 50, mvp: 3 },
+  { rank: 5, team: 'Future Falcons', wins: 4, matches: 10, month: 'December', winRate: 40, mvp: 3 },
+  { rank: 6, team: 'Smart Panthers', wins: 3, matches: 10, month: 'December', winRate: 30, mvp: 1 },
+  { rank: 1, team: 'Digital Hawks', wins: 9, matches: 10, month: 'November', winRate: 90, mvp: 6 },
+  { rank: 2, team: 'TechCorp Tigers', wins: 7, matches: 10, month: 'November', winRate: 70, mvp: 5 },
+  { rank: 3, team: 'Alpha Wolves', wins: 6, matches: 10, month: 'November', winRate: 60, mvp: 5 },
+  { rank: 4, team: 'Innovation Lions', wins: 5, matches: 10, month: 'November', winRate: 50, mvp: 3 },
+  { rank: 5, team: 'Future Falcons', wins: 4, matches: 10, month: 'November', winRate: 40, mvp: 2 },
+  { rank: 6, team: 'Smart Panthers', wins: 2, matches: 10, month: 'November', winRate: 20, mvp: 2 },
 ];
 
 export default function Leaderboard() {
@@ -112,6 +112,7 @@ export default function Leaderboard() {
                   <th className="px-6 py-4 text-center font-semibold">Wins</th>
                   <th className="px-6 py-4 text-center font-semibold">Matches</th>
                   <th className="px-6 py-4 text-center font-semibold">Win Rate</th>
+                  <th className="px-6 py-4 text-center font-semibold">MVP</th>
                 </tr>
               </thead>
               <tbody>
@@ -140,6 +141,7 @@ export default function Leaderboard() {
                         <span className="text-sm font-semibold text-gray-700">{team.winRate}%</span>
                       </div>
                     </td>
+                    <td className="px-6 py-4 text-center text-gray-700">{team.mvp}</td>
                   </motion.tr>
                 ))}
               </tbody>
