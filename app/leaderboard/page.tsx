@@ -111,8 +111,8 @@ export default function Leaderboard() {
                   <th className="px-6 py-4 text-left font-semibold">Team</th>
                   <th className="px-6 py-4 text-center font-semibold">Wins</th>
                   <th className="px-6 py-4 text-center font-semibold">Matches</th>
-                  <th className="px-6 py-4 text-center font-semibold">Win Rate</th>
                   <th className="px-6 py-4 text-center font-semibold">MVP</th>
+                  <th className="px-6 py-4 text-center font-semibold">Win Rate</th>
                 </tr>
               </thead>
               <tbody>
