@@ -3,7 +3,7 @@
 import { easeOut, motion } from 'framer-motion';
 import { Trophy, Mail, Phone, MapPin, Linkedin, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
-import Logo from '../public/logo.png'
+import Logo from '../public/favicon.ico'
 import Image from "next/image";
 
 const Footer = () => {
