@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 const contactDetails = {
-  email: 'connect@hakirush.com',
+  email: 'krishna@hakirush.com',
   phone: '+91 7997110210',
   whatsapp: '+91 7997110210',
   address: 'No. 472/7 Balaji Arcade , A.V.S. Compound, 20th L  Cross Road, AVS Layout, Ejipura, Koramangala, Bengaluru, Karnataka -560095',
@@ -44,7 +44,7 @@ export default function Contact() {
     const templateParams = { ...formData };
 
     try {
-      await emailjs.send('service_s1lva6i', 'template_lnqhq68', templateParams, 'X--V0CsL6UTjd3XiC');
+      await emailjs.send('service_e0wk90a', 'template_mpc32vt', templateParams, 'TdZxUTpTA6byQ_J-p');
       Swal.fire({ icon: 'success', title: 'Message Sent 🎉', text: 'We’ll get back to you soon!', timer: 2500, showConfirmButton: false });
       resetForm();
     } catch (error) {
