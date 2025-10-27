@@ -102,7 +102,7 @@ const Footer = () => {
                 ease: "easeInOut",
               }}>
                 <Mail className="h-4 w-4 text-red-400" />
-                <span className="text-gray-400">connect@hakirush.com</span>
+                <span className="text-gray-400">krishna@hakirush.com</span>
               </motion.span>
               <motion.span className="flex items-center space-x-3 cursor-pointer"
               whileHover={{ x: 10 }}
@@ -115,7 +115,7 @@ const Footer = () => {
                 <span className="text-gray-400">+91 7997110210</span>
               </motion.span>
               <motion.span 
-              className="flex items-center space-x-3 cursor-pointer"
+              className="flex items-start justify-center space-x-3 cursor-pointer"
               whileHover={{ x: 10 }}
               transition={{
                 type: "tween",
@@ -123,8 +123,8 @@ const Footer = () => {
                 ease: "easeInOut",
               }}
               >
-                <MapPin className="h-4 w-4 text-red-400"/>
-                <span className="text-gray-400">Koramangala, Bangalore</span>
+                <MapPin className="h-10 w-10 text-red-400"/>
+                <span className="text-gray-400 mt-2 text-md">No. 472/7 Balaji Arcade , A.V.S. Compound, 20th L Cross Road, AVS Layout, Ejipura, Koramangala, Bengaluru, Karnataka -560095.</span>
               </motion.span>
             </div>
           </motion.div>
