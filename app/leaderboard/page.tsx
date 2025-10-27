@@ -124,7 +124,7 @@ export default function Leaderboard() {
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                     className={`border-b ${getRankBg(team.rank)} hover:bg-red-50 transition-all`}
                   >
-                    <td className="px-6 py-4 text-center">{getRankIcon(team.rank)}</td>
+                    <td className="px-6 py-4 flex items-center justify-start">{getRankIcon(team.rank)}</td>
                     <td className="px-6 py-4 font-semibold text-gray-800">{team.team}</td>
                     <td className="px-6 py-4 text-center text-green-600 font-bold">{team.wins}</td>
                     <td className="px-6 py-4 text-center text-gray-700">{team.matches}</td>
