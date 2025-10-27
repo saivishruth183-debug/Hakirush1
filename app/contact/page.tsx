@@ -19,8 +19,8 @@ const contactDetails = {
 
 const socialLinks = [
   { name: 'LinkedIn', icon: <Linkedin className="h-6 w-6 text-gray-600 hover:text-red-600" />, url: 'https://linkedin.com/company/hakirush' },
-  { name: 'Instagram', icon: <Instagram className="h-6 w-6 text-gray-600 hover:text-red-600" />, url: 'https://instagram.com/hakirush' },
-  { name: 'Twitter', icon: <Twitter className="h-6 w-6 text-gray-600 hover:text-red-600" />, url: '#' }
+  { name: 'Instagram', icon: <Instagram className="h-6 w-6 text-gray-600 hover:text-red-600" />, url: 'https://www.instagram.com/hakirush.sports_events/?hl=en' },
+  { name: 'Twitter', icon: <Twitter className="h-6 w-6 text-gray-600 hover:text-red-600" />, url: 'https://x.com/Hakirushsports' }
 ];
 
 export default function Contact() {

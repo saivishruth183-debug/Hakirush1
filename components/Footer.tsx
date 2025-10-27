@@ -37,7 +37,7 @@ const Footer = () => {
               >
                 <Linkedin className="h-5 w-5" />
               </motion.a>
-              <motion.a href="https://instagram.com/hakirush" 
+              <motion.a href="https://www.instagram.com/hakirush.sports_events/?hl=en" 
                 className="text-gray-400 hover:text-red-400 transition-colors" 
                 target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.3 }}
@@ -45,7 +45,7 @@ const Footer = () => {
               >
                 <Instagram className="h-5 w-5" />
               </motion.a>
-              <motion.a href="#" className="text-gray-400 hover:text-red-400 transition-colors" 
+              <motion.a href="https://x.com/Hakirushsports" className="text-gray-400 hover:text-red-400 transition-colors" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.3 }}
